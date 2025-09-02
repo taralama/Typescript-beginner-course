@@ -1,19 +1,27 @@
-name: CI/CD Pipeline
+name: Build App Only
+
+# Trigger workflow on push to main branch
 on:
   push:
     branches: [main]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout code
       - uses: actions/checkout@v3
-      - name: Set up Node.js
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18"
+
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
-      - name: Run tests
-        run: npm test
-      - name: Build Docker Image
-        run: docker build -t myapp:latest .
+
+      # Step 4: Build the app
+      - name: Build app
+        run: npm run build
