@@ -22,10 +22,10 @@ var UserRole;
 const roleChecker = (userRole) => {
     switch (userRole) {
         case UserRole.admin:
-            console.log("this is admin");
+            console.log("This is admin");
             break;
         case UserRole.editor:
-            console.log("this is editor");
+            console.log("This is editor");
             break;
         case UserRole.superAdmin:
             console.log("This is super Admin");
@@ -38,4 +38,21 @@ const roleChecker = (userRole) => {
 };
 roleChecker(UserRole.admin);
 roleChecker(UserRole.viewer);
+//loops with type safety
+const marks = [2, 3, 4, 5, 2];
+for (const mark of marks) {
+    console.log(mark);
+}
+function isDog(animal) {
+    return animal.kind === "dog";
+}
+function makeSound(animal) {
+    if (isDog(animal)) {
+        animal.bark();
+    }
+    else {
+        animal.meow();
+    }
+}
+makeSound({ kind: "dog", bark() { } });
 //# sourceMappingURL=conditionalState.js.map

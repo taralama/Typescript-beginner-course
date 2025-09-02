@@ -45,3 +45,29 @@ const roleChecker = (userRole: UserRole) => {
 
 roleChecker(UserRole.admin);
 roleChecker(UserRole.viewer);
+
+//loops with type safety
+
+const marks: Array<number> | number[] = [2, 3, 4, 5, 2];
+
+for (const mark of marks) {
+  console.log(mark);
+}
+
+type Dog = { kind: "dog"; bark: () => void };
+type Cat = { kind: "cat"; meow: () => void };
+type Animal = Dog | Cat;
+
+function isDog(animal: Animal): animal is Dog {
+  return animal.kind === "dog";
+}
+
+function makeSound(animal: Animal) {
+  if (isDog(animal)) {
+    animal.bark();
+  } else {
+    animal.meow();
+  }
+}
+
+makeSound({ kind: "dog", bark() {} });
